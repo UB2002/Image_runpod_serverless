@@ -62,7 +62,6 @@ def handler(event):
     if not input_image_b64:
         return {"error": "Missing required field: 'image' — this endpoint only supports img2img"}
 
-    strength       = float(input.get("strength", 0.75))
     width          = int(input.get("width", 1024))
     height         = int(input.get("height", 1024))
     num_steps      = int(input.get("num_steps", 28))
@@ -70,7 +69,6 @@ def handler(event):
     seed           = input.get("seed", None)
 
     print(f"Prompt: {prompt}")
-    print(f"Strength: {strength} | Steps: {num_steps} | CFG: {guidance_scale} | Size: {width}x{height}")
 
     generator = None
     if seed is not None:
@@ -83,7 +81,6 @@ def handler(event):
         output = pipe(
             prompt=prompt,
             image=init_image,
-            strength=strength,
             num_inference_steps=num_steps,
             guidance_scale=guidance_scale,
             generator=generator,
