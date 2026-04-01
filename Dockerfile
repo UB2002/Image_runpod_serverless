@@ -1,13 +1,26 @@
-FROM pytorch/pytorch:2.11.0-cuda12.8-cudnn9-devel
+# Use a GPU-optimized base image for MedGemma
+FROM pytorch/pytorch:2.6.0-cuda12.4-cudnn9-runtime
 
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+
+# Set working directory
 WORKDIR /
 
-# --break-system-packages required: Python 3.12 on Debian enforces PEP 668
-COPY requirements.txt .
-RUN pip install --no-cache-dir --break-system-packages -r requirements.txt
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    git \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copy handler
-COPY handler.py /
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy handler code
+COPY handler.py .
 
 # Start the worker
-CMD ["python3", "-u", "handler.py"]
+# Use -u for unbuffered logs in RunPod console
+CMD ["python", "-u", "handler.py"]
