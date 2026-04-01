@@ -3,17 +3,18 @@ import torch
 import base64
 from io import BytesIO
 from PIL import Image
-from diffusers import FluxImg2ImgPipeline
+from diffusers import AutoPipelineForImage2Image
 
 # ── Model loading ─────────────────────────────────────────────────────────────
 MODEL_ID = "black-forest-labs/FLUX.2-klein-4B"
 
 print("Loading FLUX.2-klein-4B img2img pipeline...")
-pipe = FluxImg2ImgPipeline.from_pretrained(
+pipe = AutoPipelineForImage2Image.from_pretrained(
     MODEL_ID,
     torch_dtype=torch.bfloat16,
 ).to("cuda")
 print("Pipeline ready.")
+
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 def _decode_image(b64_string: str) -> Image.Image:
@@ -106,5 +107,3 @@ def handler(event):
 # ── Entrypoint ────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     runpod.serverless.start({"handler": handler})
-
-    ## pip install runpod torch diffusers transformers accelerate pillows
