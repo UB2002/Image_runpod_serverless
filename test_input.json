@@ -1,0 +1,12 @@
+{
+    "input": {
+        "prompt": "add a dramatic sunset sky with orange and purple clouds",
+        "image": "<replace_with_raw_base64_string>",
+        "strength": 0.75,
+        "width": 1024,
+        "height": 1024,
+        "num_steps": 28,
+        "guidance_scale": 3.5,
+        "seed": 42
+    }
+}
