@@ -7,7 +7,7 @@ from PIL import Image
 import traceback
 
 # ── Model loading ─────────────────────────────────────────────────────────────
-MODEL_ID = "black-forest-labs/FLUX.2-klein-4B"
+MODEL_ID = "black-forest-labs/FLUX.2-klein-base-4B"
 
 HF_TOKEN = os.environ.get("HF_TOKEN")
 if not HF_TOKEN:
