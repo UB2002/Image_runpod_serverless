@@ -6,7 +6,7 @@ from io import BytesIO
 from PIL import Image
 import traceback
 
-MODEL_ID = "stepfun-ai/Step1X-Edit-v1p2-preview"
+MODEL_ID = "stepfun-ai/Step1X-Edit-v1p2-preview" 
 
 pipe = None
 load_error = None
