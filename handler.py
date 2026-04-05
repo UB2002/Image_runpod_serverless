@@ -6,7 +6,7 @@ from io import BytesIO
 from PIL import Image
 import traceback
 
-MODEL_ID = "stepfun-ai/Step1X-Edit-v1p2-preview" 
+MODEL_ID = "stepfun-ai/Step1X-Edit-v1p2-preview"
 
 pipe = None
 load_error = None
@@ -14,10 +14,13 @@ load_error = None
 try:
     print("Loading Step1X-Edit pipeline (~10GB disk, ~16GB VRAM)...")
 
-    # Requires a custom diffusers branch
     import subprocess
+
+    # Pin transformers to a version that still exports FLAX_WEIGHTS_NAME,
+    # then install the custom diffusers branch that depends on it.
     subprocess.run([
         "pip", "install", "-q",
+        "transformers==4.40.2",
         "git+https://github.com/Peyton-Chen/diffusers.git@dev/MergeV1-2"
     ], check=True)
 
