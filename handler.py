@@ -20,7 +20,7 @@ try:
         MODEL_ID,
         torch_dtype=torch.bfloat16,
     )
-    pipe.enable_model_cpu_offload()
+    pipe.to("cuda")  # ← replaces enable_model_cpu_offload()
     pipe.set_progress_bar_config(disable=True)
 
     print("✅ Step1X-Edit loaded!")
