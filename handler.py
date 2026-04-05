@@ -14,16 +14,6 @@ load_error = None
 try:
     print("Loading Step1X-Edit pipeline (~10GB disk, ~16GB VRAM)...")
 
-    import subprocess
-
-    # Pin transformers to a version that still exports FLAX_WEIGHTS_NAME,
-    # then install the custom diffusers branch that depends on it.
-    subprocess.run([
-        "pip", "install", "-q",
-        "transformers==4.40.2",
-        "git+https://github.com/Peyton-Chen/diffusers.git@dev/MergeV1-2"
-    ], check=True)
-
     from diffusers import Step1XEditPipelineV1P2
 
     pipe = Step1XEditPipelineV1P2.from_pretrained(
@@ -42,6 +32,7 @@ except Exception as e:
 
 def _decode_image(b64: str) -> Image.Image:
     return Image.open(BytesIO(base64.b64decode(b64))).convert("RGB")
+
 
 def _encode_image(img: Image.Image) -> str:
     buf = BytesIO()
@@ -64,10 +55,10 @@ def handler(event):
             return {"error": "Missing 'image' (base64)"}
 
         input_image = _decode_image(image_b64)
+
         seed = inp.get("seed")
         generator = torch.Generator("cuda").manual_seed(int(seed)) if seed else None
 
-        # Reasoning mode — the model THINKS about your prompt before editing
         enable_thinking = inp.get("enable_thinking", True)
         enable_reflection = inp.get("enable_reflection", True)
 
@@ -89,7 +80,6 @@ def handler(event):
             "action": "replace",
         }
 
-        # Optionally return the model's reasoning
         if enable_thinking and hasattr(result, "reformat_prompt"):
             response["reformat_prompt"] = result.reformat_prompt
 

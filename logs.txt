@@ -1,0 +1,47 @@
+2026-04-05T05:39:59.331770345Z Loading Step1X-Edit pipeline (~10GB disk, ~16GB VRAM)...
+2026-04-05T05:40:13.113861631Z WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+2026-04-05T05:40:19.503672541Z ❌ Failed: Failed to import diffusers.pipelines.step1x_edit.pipeline_step1x_edit_v1p2 because of the following error (look up to see its traceback):
+2026-04-05T05:40:19.503709175Z cannot import name 'FLAX_WEIGHTS_NAME' from 'transformers.utils' (/opt/conda/lib/python3.11/site-packages/transformers/utils/__init__.py)
+2026-04-05T05:40:19.503713125Z Traceback (most recent call last):
+2026-04-05T05:40:19.503717038Z   File "/opt/conda/lib/python3.11/site-packages/diffusers/utils/import_utils.py", line 954, in _get_module
+2026-04-05T05:40:19.503720571Z     return importlib.import_module("." + module_name, self.__name__)
+2026-04-05T05:40:19.503723955Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-04-05T05:40:19.503726599Z   File "/opt/conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+2026-04-05T05:40:19.503729658Z     return _bootstrap._gcd_import(name[level:], package, level)
+2026-04-05T05:40:19.503732932Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-04-05T05:40:19.503735751Z   File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+2026-04-05T05:40:19.503738345Z   File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+2026-04-05T05:40:19.503741138Z   File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+2026-04-05T05:40:19.503743771Z   File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+2026-04-05T05:40:19.503746181Z   File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+2026-04-05T05:40:19.503748801Z   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+2026-04-05T05:40:19.503751256Z   File "/opt/conda/lib/python3.11/site-packages/diffusers/pipelines/step1x_edit/pipeline_step1x_edit_v1p2.py", line 32, in <module>
+2026-04-05T05:40:19.503753788Z     from ..pipeline_utils import DiffusionPipeline
+2026-04-05T05:40:19.503756291Z   File "/opt/conda/lib/python3.11/site-packages/diffusers/pipelines/pipeline_utils.py", line 76, in <module>
+2026-04-05T05:40:19.503758788Z     from .pipeline_loading_utils import (
+2026-04-05T05:40:19.503761561Z   File "/opt/conda/lib/python3.11/site-packages/diffusers/pipelines/pipeline_loading_utils.py", line 51, in <module>
+2026-04-05T05:40:19.503764864Z     from transformers.utils import FLAX_WEIGHTS_NAME as TRANSFORMERS_FLAX_WEIGHTS_NAME
+2026-04-05T05:40:19.503767171Z ImportError: cannot import name 'FLAX_WEIGHTS_NAME' from 'transformers.utils' (/opt/conda/lib/python3.11/site-packages/transformers/utils/__init__.py)
+2026-04-05T05:40:19.503771919Z The above exception was the direct cause of the following exception:
+2026-04-05T05:40:19.503776473Z Traceback (most recent call last):
+2026-04-05T05:40:19.503780636Z   File "//handler.py", line 24, in <module>
+2026-04-05T05:40:19.503783379Z     from diffusers import Step1XEditPipelineV1P2
+2026-04-05T05:40:19.503785763Z   File "<frozen importlib._bootstrap>", line 1229, in _handle_fromlist
+2026-04-05T05:40:19.503788099Z   File "/opt/conda/lib/python3.11/site-packages/diffusers/utils/import_utils.py", line 945, in __getattr__
+2026-04-05T05:40:19.503790672Z     value = getattr(module, name)
+2026-04-05T05:40:19.503792976Z             ^^^^^^^^^^^^^^^^^^^^^
+2026-04-05T05:40:19.503795423Z   File "/opt/conda/lib/python3.11/site-packages/diffusers/utils/import_utils.py", line 945, in __getattr__
+2026-04-05T05:40:19.503798116Z     value = getattr(module, name)
+2026-04-05T05:40:19.503800356Z             ^^^^^^^^^^^^^^^^^^^^^
+2026-04-05T05:40:19.503802739Z   File "/opt/conda/lib/python3.11/site-packages/diffusers/utils/import_utils.py", line 944, in __getattr__
+2026-04-05T05:40:19.503805253Z     module = self._get_module(self._class_to_module[name])
+2026-04-05T05:40:19.503829242Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-04-05T05:40:19.503835968Z   File "/opt/conda/lib/python3.11/site-packages/diffusers/utils/import_utils.py", line 956, in _get_module
+2026-04-05T05:40:19.503838576Z     raise RuntimeError(
+2026-04-05T05:40:19.503841839Z RuntimeError: Failed to import diffusers.pipelines.step1x_edit.pipeline_step1x_edit_v1p2 because of the following error (look up to see its traceback):
+2026-04-05T05:40:19.503844396Z cannot import name 'FLAX_WEIGHTS_NAME' from 'transformers.utils' (/opt/conda/lib/python3.11/site-packages/transformers/utils/__init__.py)
+2026-04-05T05:40:19.503851915Z --- Starting Serverless Worker |  Version 1.7.9 ---
+2026-04-05T05:40:19.800228450Z {"requestId": null, "message": "Jobs in queue: 1", "level": "INFO"}
+2026-04-05T05:40:19.800281387Z {"requestId": null, "message": "Jobs in progress: 1", "level": "INFO"}
+2026-04-05T05:40:19.800287260Z {"requestId": "50f418a2-5c3b-408b-b209-55d9e4852b07-e2", "message": "Started.", "level": "INFO"}
+2026-04-05T05:40:19.932352652Z {"requestId": "50f418a2-5c3b-408b-b209-55d9e4852b07-e2", "message": "Finished.", "level": "INFO"}
